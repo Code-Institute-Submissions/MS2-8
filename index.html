@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HappyBurpees</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/simple-sidebar.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light border-bottom">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="logo col-8">
+                <img
+                  class="logo-image"
+                  src="assets/images/logo_small.png"
+                  alt="HappyBurpees"
+                />
+              </div>
+              <div class="col-2">
+                <i
+                  id="contact"
+                  class="contact fa fa-envelope-o pull-right"
+                  aria-hidden="true"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="true"
+                ></i>
+
+                <div
+                  class="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="contact"
+                >
+                  <a class="dropdown-item" href="mailto:contact@happyburpees.se"
+                    >&#64;: contact@happyburpees.se</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <section class="container-fluid content">
+          <div class="row">
+            <h1 class="mt-4 col-12">
+              WODar efter din nivå och dina förutsättningar
+            </h1>
+            <div class="col-xl-3 col-lg-4 col-md-6">
+              <ul>
+                <li>
+                  <label for="experience">Din nivå:</label>
+                  <select name="experience" id="experience">
+                    <option value="rx">RX</option>
+                    <option value="scaled" selected>Scaled</option>
+                  </select>
+                </li>
+                <li>
+                  <label for="wod">Typ av WOD:</label>
+                  <select name="wod" id="wod">
+                    <option value="amrap">AMRAP</option>
+                    <option value="emom">EMOM</option>
+                    <option value="hero">Hero</option>
+                    <option value="all" selected>Alla</option>
+                  </select>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-xl-6 col-lg-8 col-md-12"></div>
+            <div class="col-xl-3 col-lg-4 col-md-6"></div>
+          </div>
+        </section>
+        <!-- footer -->
+        <footer class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <ul class="list-inline social-links">
+                <li class="list-inline-item">
+                  <a target="_blank" href="https://facebook.com">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                    <span class="sr-only">Facebook</span>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a target="_blank" href="https://instagram.com">
+                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                    <span class="sr-only">Instagram</span>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a target="_blank" href="https://youtube.com">
+                    <i class="fa fa-youtube" aria-hidden="true"></i>
+                    <span class="sr-only">YouTube</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </footer>
+        <!-- /footer -->
+      </div>
+      <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- bootstrap-js -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    <!-- /bootstrap-js -->
+  </body>
+</html>
