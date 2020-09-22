@@ -28,7 +28,11 @@ let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 
 function formatTimeLeft(time) {
-  // The largest round integer less than or equal to the result of time divided being by 60.
+  if(time < 0){
+      return '0:00';
+  }
+
+    // The largest round integer less than or equal to the result of time divided being by 60.
   const minutes = Math.floor(time / 60);
   
   // Seconds are the remainder of the time divided by 60 (modulus operator)
