@@ -51,7 +51,7 @@ describe("setRemainingPathColor", function() {
     mockElement.classList.add(COLOR_CODES.info.color);
     document.getElementById = jasmine.createSpy('Mock Element').and.returnValue(mockElement);
 
-    let timeLeft = 20
+    let timeLeft = 20;
 
     // When
     setRemainingPathColor(timeLeft);
@@ -66,7 +66,7 @@ describe("setRemainingPathColor", function() {
     mockElement.classList.add(COLOR_CODES.info.color);
     document.getElementById = jasmine.createSpy('Mock Element').and.returnValue(mockElement);
 
-    let timeLeft = 10
+    let timeLeft = 10;
 
     // When
     setRemainingPathColor(timeLeft);
@@ -78,12 +78,13 @@ describe("setRemainingPathColor", function() {
   it("TimeLeft less or equal to 5 should return alert color", function() {
     // Given
     let mockElement = document.createElement("div");
-    mockElement.classList.add(COLOR_CODES.info.color);
+    mockElement.classList.add(COLOR_CODES.warning.color);
     document.getElementById = jasmine.createSpy('Mock Element').and.returnValue(mockElement);
 
+    let timeLeft = 5;
+
     // When
-    setRemainingPathColor(6);
-    setRemainingPathColor(5);
+    setRemainingPathColor(timeLeft);
 
     // Then
     expect(mockElement.classList).toContain(COLOR_CODES.alert.color);
