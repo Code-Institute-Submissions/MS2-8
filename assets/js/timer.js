@@ -8,16 +8,16 @@ const ALERT_THRESHOLD = 5;
 
 const COLOR_CODES = {
   info: {
-    color: "green"
+    color: "green",
   },
   warning: {
     color: "orange",
-    threshold: WARNING_THRESHOLD
+    threshold: WARNING_THRESHOLD,
   },
   alert: {
     color: "red",
-    threshold: ALERT_THRESHOLD
-  }
+    threshold: ALERT_THRESHOLD,
+  },
 };
 
 // Initially, no time has passed, but this will count up
@@ -28,16 +28,16 @@ let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 
 function formatTimeLeft(time) {
-  if(time < 0){
-      return '0:00';
+  if (time < 0) {
+    return "0:00";
   }
 
-    // The largest round integer less than or equal to the result of time divided being by 60.
+  // The largest round integer less than or equal to the result of time divided being by 60.
   const minutes = Math.floor(time / 60);
-  
+
   // Seconds are the remainder of the time divided by 60 (modulus operator)
   let seconds = time % 60;
-  
+
   // If the value of seconds is less than 10, then display seconds with a leading zero
   if (seconds < 10) {
     seconds = `0${seconds}`;
@@ -54,13 +54,12 @@ function stopTimer() {
 
 function startTimer() {
   timerInterval = setInterval(() => {
-    
     // The amount of time passed increments by one
     timePassed = timePassed += 1;
     timeLeft = TIME_LIMIT - timePassed;
-    
+
     // The time left label is updated
-    $('#base-timer-label').text(formatTimeLeft(timeLeft));
+    $("#base-timer-label").text(formatTimeLeft(timeLeft));
     setCircleDasharray();
     setRemainingPathColor(timeLeft);
 
@@ -71,14 +70,13 @@ function startTimer() {
 }
 
 function toggleTimer() {
-    if (timerInterval === null) {
-        startTimer();
-        return "started";
-    }
-    else {
-        stopTimer();
-        return "stopped";
-    }
+  if (timerInterval === null) {
+    startTimer();
+    return "started";
+  } else {
+    stopTimer();
+    return "stopped";
+  }
 }
 
 function calculateTimeFraction() {
@@ -112,7 +110,7 @@ function setRemainingPathColor(timeLeft) {
       .getElementById("base-timer-path-remaining")
       .classList.add(alert.color);
 
-  // If the remaining time is less than or equal to 10, remove the base color and apply the "warning" class.
+    // If the remaining time is less than or equal to 10, remove the base color and apply the "warning" class.
   } else if (timeLeft <= warning.threshold) {
     document
       .getElementById("base-timer-path-remaining")
@@ -123,15 +121,38 @@ function setRemainingPathColor(timeLeft) {
   }
 }
 
-// Init 
-$('#base-timer-label').text(formatTimeLeft(timeLeft));
-$("#base-timer-path-remaining").addClass(remainingPathColor);
-$( "#start-clock" ).click(function() {
-    let action = toggleTimer();
-    if (action === "started"){
-        $(this).text("Paus");
+function reset() {
+    timePassed = 0;
+    timeLeft = TIME_LIMIT;
+    if(timerInterval != null)
+    {
+        stopTimer();
     }
-    else {
-        $(this).text("Starta Klockan");
+
+    $("#base-timer-label").text(formatTimeLeft(timeLeft));
+    
+    //Reset css-classes
+    $("#base-timer-path-remaining").removeClass(COLOR_CODES.info.color);
+    $("#base-timer-path-remaining").removeClass(COLOR_CODES.warning.color);
+    $("#base-timer-path-remaining").removeClass(COLOR_CODES.alert.color);
+    $("#base-timer-path-remaining").addClass(COLOR_CODES.info.color);
+
+    setCircleDasharray();
+    
+    $("#start-clock").text("Starta klockan");
+}
+
+$("#start-clock").click(function () {
+    let action = toggleTimer();
+    if (action === "started") {
+    $(this).text("Paus");
+    } else {
+    $(this).text("Starta klockan");
     }
 });
+
+$("#reset-clock").click(function () {
+  reset();
+});
+
+reset();
