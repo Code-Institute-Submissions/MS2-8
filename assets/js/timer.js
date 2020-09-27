@@ -47,8 +47,9 @@ function formatTimeLeft(time) {
   return `${minutes}:${seconds}`;
 }
 
-function onTimesUp() {
+function stopTimer() {
   clearInterval(timerInterval);
+  timerInterval = null;
 }
 
 function startTimer() {
@@ -64,9 +65,20 @@ function startTimer() {
     setRemainingPathColor(timeLeft);
 
     if (timeLeft === 0) {
-      onTimesUp();
+      stopTimer();
     }
   }, 1000);
+}
+
+function toggleTimer() {
+    if (timerInterval === null) {
+        startTimer();
+        return "started";
+    }
+    else {
+        stopTimer();
+        return "stopped";
+    }
 }
 
 function calculateTimeFraction() {
@@ -114,6 +126,12 @@ function setRemainingPathColor(timeLeft) {
 // Init 
 $('#base-timer-label').text(formatTimeLeft(timeLeft));
 $("#base-timer-path-remaining").addClass(remainingPathColor);
-startTimer();
-
-    
+$( "#start-clock" ).click(function() {
+    let action = toggleTimer();
+    if (action === "started"){
+        $(this).text("Paus");
+    }
+    else {
+        $(this).text("Starta Klockan");
+    }
+});
