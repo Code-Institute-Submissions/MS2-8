@@ -22,7 +22,7 @@ function getRandomWod() {
     if (this.readyState == 4 && this.status == 200) {
       let json = JSON.parse(this.responseText);
       let wod = getRandomItem(json.Items); //todo get random wod
-      let gender = $("#gender").val();
+      let gender = $("input:radio[name ='gender']:checked").val(); // $("#gender").val();
       let experience = $("#experience").val();
       let type = $("#wod-type").val();
       document.getElementById("card-title").innerHTML = wod.name;
