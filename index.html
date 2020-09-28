@@ -88,7 +88,7 @@
                   </select>
                 </li>
                 <li>
-                  <a href="#" id="random-wod" class="btn btn-primary">Slumpa ny WOD</a>
+                  <button id="random-wod" class="btn btn-primary">Slumpa ny WOD</button>
                 </li>
               </ul>
             </div>
@@ -127,17 +127,26 @@
                 </div>
                 <div class="card-body">
                   <h5 id="card-title" class="card-title"></h5>
-                  <p id="card-text" class="card-text">
-                    <span id="card-type" class="badge badge-primary"></span>
-                    <span id="card-level" class="badge badge-secondary"></span>
-                    <span id="card-gender" class="badge badge-success"></span>
-                  </p>
+                  <div id="card-text" class="row">
+                    <div class="col-7">
+                        <span id="card-type" class="badge badge-primary"></span>
+                        <span id="card-level" class="badge badge-secondary"></span>
+                    </div>
+                    <div class="btn-group btn-group-toggle col-5" data-toggle="buttons">
+                        <label class="btn btn-secondary active badge">
+                            <input type="radio" name="options" id="option1" checked>Man
+                        </label>
+                        <label class="btn btn-secondary badge">
+                            <input type="radio" name="options" id="option2">Kvinna
+                        </label>
+                    </div>
+                  </div>
                 </div>
                 <ul id="card-steps" class="list-group list-group-flush">
                 </ul>
                 <div class="card-body">
-                  <a id="reset-clock" class="btn btn-primary">Reset</a>
-                  <a id="start-clock" class="btn btn-primary">Starta klockan</a>
+                  <button id="start-clock" class="btn btn-primary btn-block">Starta klockan</button>
+                  <button id="reset-clock" class="btn btn-secondary btn-block">Reset</button>
                 </div>
               </div>
             </div>
