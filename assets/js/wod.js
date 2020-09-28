@@ -7,7 +7,8 @@ function getWeight(gender, weight) {
 }
 
 function getRandomItem(items) {
-    
+  let index = Math.floor(Math.random() * items.length);
+  return items[index];
 }
 
 $("#random-wod").click(function () {
@@ -27,21 +28,23 @@ function getRandomWod() {
       document.getElementById("card-title").innerHTML = wod.name;
       document.getElementById("card-type").innerHTML = wod.type;
       document.getElementById("card-level").innerHTML = experience;
-      document.getElementById("card-gender").innerHTML = gender;
-      
-      $("#card-steps").empty()
+
+      $("#card-steps").empty();
       for (i = 0; i < wod.steps.length; i++) {
-        $("#card-steps").append(
+        let weight = getWeight(gender, wod.steps[i].weight);
+        
+        let listItem =
           '<li class="list-group-item">' +
-            wod.steps[i].repetitions +
-            " " +
-            wod.steps[i].name +
-            " " +
-            getWeight(gender, wod.steps[i].weight) +
-            " " +
-            wod.steps[i].unit +
-            "</li>"
-        );
+          wod.steps[i].repetitions +
+          " x " +
+          wod.steps[i].name;
+        if (weight > 0) {
+          listItem += " " + weight +
+          " " + wod.steps[i].unit;
+        }
+        listItem += "</li>";
+
+        $("#card-steps").append(listItem);
       }
     }
   };
