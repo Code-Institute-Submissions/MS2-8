@@ -30,9 +30,24 @@ function getRandomItem(items) {
   return items[index];
 }
 
-$("#random-wod").click(function () {
-  getRandomWod();
-});
+function setWeight() {
+  $("#card-steps").empty();
+  for (i = 0; i < wod.steps.length; i++) {
+    let weight = getWeight(gender, wod.steps[i].weight);
+
+    let listItem =
+      '<li class="list-group-item">' +
+      wod.steps[i].repetitions +
+      " x " +
+      wod.steps[i].name;
+    if (weight > 0) {
+      listItem += " " + weight + " " + wod.steps[i].unit;
+    }
+    listItem += "</li>";
+
+    $("#card-steps").append(listItem);
+  }
+}
 
 function getRandomWod() {
   var xhr = new XMLHttpRequest();
@@ -49,23 +64,7 @@ function getRandomWod() {
       document.getElementById("card-title").innerHTML = wod.name;
       document.getElementById("card-type").innerHTML = wod.type;
       document.getElementById("card-level").innerHTML = wod.experience;
-
-      $("#card-steps").empty();
-      for (i = 0; i < wod.steps.length; i++) {
-        let weight = getWeight(gender, wod.steps[i].weight);
-
-        let listItem =
-          '<li class="list-group-item">' +
-          wod.steps[i].repetitions +
-          " x " +
-          wod.steps[i].name;
-        if (weight > 0) {
-          listItem += " " + weight + " " + wod.steps[i].unit;
-        }
-        listItem += "</li>";
-
-        $("#card-steps").append(listItem);
-      }
+      setWeight();
     }
   };
 
@@ -77,5 +76,14 @@ function getRandomWod() {
 
   xhr.send();
 }
+
+$("#random-wod").click(function () {
+  getRandomWod();
+});
+
+$("input:radio[name ='gender']").change(function () {
+    gender = $(this).val();
+    setWeight();
+});
 
 getRandomWod();
