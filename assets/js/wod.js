@@ -1,3 +1,8 @@
+let wod;
+let gender;
+let type;
+let experience;
+
 function getWeight(gender, weight) {
   if (gender === "woman") {
     return weight.w;
@@ -6,7 +11,21 @@ function getWeight(gender, weight) {
   }
 }
 
+function filterExperience(item) {
+  return item.experience === experience;
+}
+
+function filterType(item) {
+  if (type === "ALL") {
+    return true;
+  } else {
+    return item.type === type;
+  }
+}
+
 function getRandomItem(items) {
+  items = items.filter(filterExperience);
+  items = items.filter(filterType);
   let index = Math.floor(Math.random() * items.length);
   return items[index];
 }
@@ -20,27 +39,28 @@ function getRandomWod() {
 
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
+      gender = $("input:radio[name ='gender']:checked").val();
+      experience = $("#experience").val();
+      type = $("#wod-type").val();
+
       let json = JSON.parse(this.responseText);
-      let wod = getRandomItem(json.Items); //todo get random wod
-      let gender = $("input:radio[name ='gender']:checked").val();
-      let experience = $("#experience").val();
-      let type = $("#wod-type").val();
+      wod = getRandomItem(json.Items); //todo get random wod
+
       document.getElementById("card-title").innerHTML = wod.name;
       document.getElementById("card-type").innerHTML = wod.type;
-      document.getElementById("card-level").innerHTML = experience;
+      document.getElementById("card-level").innerHTML = wod.experience;
 
       $("#card-steps").empty();
       for (i = 0; i < wod.steps.length; i++) {
         let weight = getWeight(gender, wod.steps[i].weight);
-        
+
         let listItem =
           '<li class="list-group-item">' +
           wod.steps[i].repetitions +
           " x " +
           wod.steps[i].name;
         if (weight > 0) {
-          listItem += " " + weight +
-          " " + wod.steps[i].unit;
+          listItem += " " + weight + " " + wod.steps[i].unit;
         }
         listItem += "</li>";
 
