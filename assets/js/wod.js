@@ -86,4 +86,12 @@ $("input:radio[name ='gender']").change(function () {
     setWeight();
 });
 
+$("#experience").change(function () {
+     getRandomWod();
+});
+
+$("#wod-type").change(function() {
+    getRandomWod();
+});
+
 getRandomWod();
