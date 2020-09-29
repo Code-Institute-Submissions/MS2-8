@@ -1,5 +1,3 @@
-// Start with an initial value of 30 seconds
-const TIME_LIMIT = 20;
 const FULL_DASH_ARRAY = 283;
 // Warning occurs at 10s
 const WARNING_THRESHOLD = 10;
@@ -22,8 +20,11 @@ const COLOR_CODES = {
 
 // Initially, no time has passed, but this will count up
 // and subtract from the TIME_LIMIT
+// Start with an initial value of 300 seconds
+let countDown = true;
+let time_limit = 300;
 let timePassed = 0;
-let timeLeft = TIME_LIMIT;
+let timeLeft = time_limit;
 let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 
@@ -56,15 +57,20 @@ function startTimer() {
   timerInterval = setInterval(() => {
     // The amount of time passed increments by one
     timePassed = timePassed += 1;
-    timeLeft = TIME_LIMIT - timePassed;
+    if (countDown === true) {
+      timeLeft = time_limit - timePassed;
 
-    // The time left label is updated
-    $("#base-timer-label").text(formatTimeLeft(timeLeft));
-    setCircleDasharray();
-    setRemainingPathColor(timeLeft);
+      // The time left label is updated
+      $("#base-timer-label").text(formatTimeLeft(timeLeft));
+      setCircleDasharray();
+      setRemainingPathColor(timeLeft);
 
-    if (timeLeft === 0) {
-      stopTimer();
+      if (timeLeft === 0) {
+        stopTimer();
+      }
+    } else {
+      // The time left label is updated
+      $("#base-timer-label").text(formatTimeLeft(timePassed));
     }
   }, 1000);
 }
@@ -80,7 +86,7 @@ function toggleTimer() {
 }
 
 function calculateTimeFraction() {
-  return timeLeft / TIME_LIMIT;
+  return timeLeft / time_limit;
 }
 
 // Update the dasharray value as time passes, starting with 283
@@ -94,8 +100,8 @@ function setCircleDasharray() {
 }
 
 function calculateTimeFraction() {
-  const rawTimeFraction = timeLeft / TIME_LIMIT;
-  return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+  const rawTimeFraction = timeLeft / time_limit;
+  return rawTimeFraction - (1 / time_limit) * (1 - rawTimeFraction);
 }
 
 function setRemainingPathColor(timeLeft) {
@@ -121,38 +127,39 @@ function setRemainingPathColor(timeLeft) {
   }
 }
 
-function reset() {
-    timePassed = 0;
-    timeLeft = TIME_LIMIT;
-    if(timerInterval != null)
-    {
-        stopTimer();
-    }
+function resetTimer(limit) {
+  countDown = limit > 0;
+  time_limit = limit;
+  timePassed = 0;
+  timeLeft = time_limit;
+  if (timerInterval != null) {
+    stopTimer();
+  }
 
-    $("#base-timer-label").text(formatTimeLeft(timeLeft));
-    
-    //Reset css-classes
-    $("#base-timer-path-remaining").removeClass(COLOR_CODES.info.color);
-    $("#base-timer-path-remaining").removeClass(COLOR_CODES.warning.color);
-    $("#base-timer-path-remaining").removeClass(COLOR_CODES.alert.color);
-    $("#base-timer-path-remaining").addClass(COLOR_CODES.info.color);
+  $("#base-timer-label").text(formatTimeLeft(timeLeft));
 
-    setCircleDasharray();
-    
-    $("#start-clock").text("Starta klockan");
+  //Reset css-classes
+  $("#base-timer-path-remaining").removeClass(COLOR_CODES.info.color);
+  $("#base-timer-path-remaining").removeClass(COLOR_CODES.warning.color);
+  $("#base-timer-path-remaining").removeClass(COLOR_CODES.alert.color);
+  $("#base-timer-path-remaining").addClass(COLOR_CODES.info.color);
+
+  setCircleDasharray();
+
+  $("#start-clock").text("Starta klockan");
 }
 
 $("#start-clock").click(function () {
-    let action = toggleTimer();
-    if (action === "started") {
+  let action = toggleTimer();
+  if (action === "started") {
     $(this).text("Paus");
-    } else {
+  } else {
     $(this).text("Starta klockan");
-    }
+  }
 });
 
 $("#reset-clock").click(function () {
-  reset();
+  resetTimer(time_limit);
 });
 
-reset();
+resetTimer(time_limit);

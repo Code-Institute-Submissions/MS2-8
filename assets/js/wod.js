@@ -64,6 +64,7 @@ function getRandomWod() {
       document.getElementById("card-title").innerHTML = wod.name;
       document.getElementById("card-type").innerHTML = wod.type;
       document.getElementById("card-level").innerHTML = wod.experience;
+      resetTimer(wod.time); // will reset timer
       setWeight();
     }
   };
