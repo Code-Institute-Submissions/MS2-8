@@ -3,6 +3,11 @@ let gender;
 let type;
 let experience;
 
+/**
+ * Gets weight based on gender
+ * @param {string} gender 
+ * @param {object} weight 
+ */
 function getWeight(gender, weight) {
   if (gender === "woman") {
     return weight.w;
@@ -11,10 +16,18 @@ function getWeight(gender, weight) {
   }
 }
 
+/**
+ * Filter by experience
+ * @param {object} item 
+ */
 function filterExperience(item) {
   return item.experience === experience;
 }
 
+/**
+ * Filter by type
+ * @param {object} item 
+ */
 function filterType(item) {
   if (type === "ALL") {
     return true;
@@ -23,16 +36,22 @@ function filterType(item) {
   }
 }
 
+/**
+ * Get random item filter by type and experience
+ * @param {object} items 
+ */
 function getRandomItem(items) {
   items = items.filter(filterExperience);
   items = items.filter(filterType);
   let index = Math.floor(Math.random() * items.length);
   return items[index];
 }
-
+/**
+ * Sets the weight and render list items
+ */
 function setWeight() {
   $("#card-steps").empty();
-  for (i = 0; i < wod.steps.length; i++) {
+  for (let i = 0; i < wod.steps.length; i++) {
     let weight = getWeight(gender, wod.steps[i].weight);
 
     let listItem =
@@ -49,6 +68,9 @@ function setWeight() {
   }
 }
 
+/**
+ * Get random WOD fron API, resets all value and renders WOD content
+ */
 function getRandomWod() {
   var xhr = new XMLHttpRequest();
 
@@ -59,7 +81,7 @@ function getRandomWod() {
       type = $("#wod-type").val();
 
       let json = JSON.parse(this.responseText);
-      wod = getRandomItem(json.Items); //todo get random wod
+      wod = getRandomItem(json.Items); // get random wod
 
       document.getElementById("card-title").innerHTML = wod.name;
       document.getElementById("card-type").innerHTML = wod.type;
