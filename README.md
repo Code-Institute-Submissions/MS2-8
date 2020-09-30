@@ -3,6 +3,8 @@
 My project is a site for CrossFit practitioners.  It contains a page where you can fill in what type of WOD (exercise) you want to do and on wich level. This will show you a WOD suited for you and let you choose an other WOD if you are not happy with the one suggested for you.
 Every WOD also have a timer that count down if you have a WOD you should do within a specific timecap or count up if you want to see for how long the WOD takes to submit for you.
 
+# ![Logo](assets/images/MS2.png) #
+
 ## UX
 
 - As a CrossFit practitioner you always want to find new WODs to try at home or in the BOX, therefore happy burpees will suggest some good workouts on the site.
@@ -61,7 +63,6 @@ Every WOD also have a timer that count down if you have a WOD you should do with
     - For setting the color-scheme.
 
 
-
 ## Testing
 
 Timer functions are tested by using jasmine.
@@ -76,12 +77,7 @@ Run tests by following link:
 https://hanna-maja.github.io/MS2/testrunner/
 
 
----- remove
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
-
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
-
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
+## Manually Testing
 
 1. As a CrossFit practitioner you always want to find new WODs to try at home or in the BOX, therefore happy burpees will suggest some good workouts on the site.
     1. Go to Happy Burpees Wods
@@ -92,25 +88,24 @@ For any scenarios that have not been automated, test the user stories manually a
     1. Go to Happy Burpees Wods
     2. Click on the "man" or "kvinna" button on the card
     3. Find a WOD suggested WOD for you that the weights are filtred by gender
-    4. 
 
 3. As a CrossFit practitioner you want to adjust the WOD by your skills, therefore you get the option to select if your WOD whether should be hard (RX) or easy (scaled).
     1. Go to Happy Burpees Wods
-    2. Click on the drop down meny "Dn nivå"
-    3. Choose whether your WOD are filtred by RX or scaled
+    2. Click on the drop down meny "Din nivå"
+    3. Choose whether your WOD are filtred by RX or Scaled
     4. See the WOD filtred and suggested for you
 
 4. As a CrossFit practitioner you want to adjust the WOD by type of WOD, therefore you get the option to select the WOD type (AMRAP, EMOM or RFT).
     1. Go to Happy Burpees Wods
     2. Click on the drop down meny "Typ av WOD"
-    3. Choose the type of WOD you want to do, an AMRAP, EMOM or 1RFT
+    3. Choose the type of WOD you want to do, an AMRAP, EMOM or RFT
     4. See the WOD filtred and suggested based on your choice
 
 5. As a CrossFit practitioner you want to see the time it takes to go through a WOD, how much time you have to deal with to go through the WOD or how much time that is remaining of the WOD, therefore you see a timer connected to the WOD you have chosen (not applicable for RFT)
     1. Go to Happy Burpees Wods
     2. Chose one WOD you want to do
     3. Find the timer on the top of the WOD
-    4. Start the timer
+    4. Start the timer by clicking the button "Starta klockan"
 
 6. As a CrossFit practitioner I want inspiration and therefore the site have social media links to get you what you want.
     1. Go to the footer on the page
@@ -123,7 +118,9 @@ For any scenarios that have not been automated, test the user stories manually a
     3. Verify that your e-mail client opens up with contact@happyburpees.se as the receiver
 
 ## Bugs Found
---- comment: Perhaps that comment from your mentor should be here (I still think it has to do with the API not showing a new WOD fast enough)
+
+Comment from my mentor was that the timer had some time delay and he was able to click the start button before the time was set. This is probably due to a delay from API call.
+To solve this problem I could have added a spinner.
 
 ## Deployment
 
